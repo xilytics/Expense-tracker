@@ -18,10 +18,10 @@ router.delete('/:id', deleteExpense);
 router.get('/summary', getSummary);
 
 //Edit expenses
-router.put('/add', addExpense);
+router.put('/edit', addExpense);
 
 //filter expenses
-router.get('/add', filterExpense);
+router.get('/filter', filterExpense);
 
 module.exports=router;
 
