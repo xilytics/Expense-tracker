@@ -1,7 +1,6 @@
-//Handling user registration
+//Handling expenses
 const Expense = require('../models/Expense');
 const jwt = require('jsonwebtoken');
-const bcrypt=require('bcrypt');
 const mongoose=require('mongoose');
 
 exports.addExpense=async(req,res)=> {
@@ -36,11 +35,11 @@ exports.deleteExpense=async (req,res)=> {
     try {
       const expense = await Expense.findByIdAndDelete(req.params.id);
       if (!expense) {
-        return res.status(404).send();
+        return res.status(404).send({ message: 'Expense not found' });
       }
-      res.send(expense);
+      res.send({message: 'Expense deleted successfully',expense});
     } catch (err) {
-      res.status(500).send(err);
+      res.status(500).send({message: 'Error deleting expense',err});
     }
   };
 
