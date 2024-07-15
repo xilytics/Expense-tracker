@@ -1,7 +1,12 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SignUp from './components/SignUp';
+//import NavBar from './components/NavBar';
+import SignUp from './components/signup/SignUp';
+import SignIn from './components/signin/SignIn';
+
+
+
 
 function App(){
   return (
@@ -9,12 +14,7 @@ function App(){
       <div className="App">
         <Routes>
           <Route path="/signup" element={<SignUp />} /> 
-          <Route path="/" element={
-            <div>
-              <h1>Welcome to the Expense Tracker App</h1>
-              <p>Please sign up or login to continue.</p>
-            </div>
-          } />
+          <Route path="/" element={<SignIn />} />
         </Routes>
       </div>
     </Router>
