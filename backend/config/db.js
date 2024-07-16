@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
 require('dotenv').config();
 
+
 //Making sure URI will be passed as a string
 const db=String(process.env.MONGO_URI);
 

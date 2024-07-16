@@ -6,6 +6,10 @@
     height: 100vh;
 }
 
+.title {
+    align-items: center;
+    text-align: center;
+}
 .form {
     display: flex;
     flex-direction: column;

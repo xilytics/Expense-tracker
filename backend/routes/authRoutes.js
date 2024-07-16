@@ -5,6 +5,7 @@ const { signin } = require('../controllers/authController');
 
 //Register user
 router.post('/register',register);
+//Signin user
 router.post('/signin',signin);
 
 

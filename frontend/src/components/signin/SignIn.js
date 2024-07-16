@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './SignIn.module.css'; 
-import waveIcon from './visuals/wave.svg';
+import waveIcon from '../visuals/wave.svg';
 
 
 const SignIn = () => {
@@ -21,12 +21,13 @@ const SignIn = () => {
       const res = await axios.post('http://localhost:5001/api/auth/signin', { email, password });
       // Optionally, save the token in localStorage or context for authenticated routes
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('userId', res.data.id);
+      localStorage.setItem('userId', res.data.userId);
       navigate('/ExpenseList');
     } catch (err) {
         console.error('Login failed:', err);
     }
   };
+  
 
   return (
     <div className={styles.container}>
@@ -59,7 +60,7 @@ const SignIn = () => {
         </label>
         <button type="submit" className={styles.button}>Sign In</button>
         <p className={styles.requireSignup}>
-          Don't have an account? <Link to="/signup" className={styles.SignupLink}>Sign up here</Link>
+          Don't have an account? <Link to="/signup" className={styles.SignupLink}>Sign up</Link>
         </p>    
       </form>
     </div>
@@ -67,3 +68,12 @@ const SignIn = () => {
 };
 
 export default SignIn;
+export const login = async (credentials) => {
+  try {
+      const response = await axios.post('/api/auth/signin', credentials);
+      localStorage.setItem('token', response.data.token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`; // Set the header immediately after login
+  } catch (error) {
+      console.error('Login failed:', error.response?.data.message);
+  }
+}
