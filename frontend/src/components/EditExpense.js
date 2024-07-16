@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import ExpenseService from '../services/ExpenseService';
+import { Redirect } from 'react-router-dom';
+
 
 const EditExpense = ({ expense, onUpdate }) => {
     const [amount, setAmount] = useState(expense.amount);

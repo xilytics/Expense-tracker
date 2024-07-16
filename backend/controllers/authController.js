@@ -10,7 +10,7 @@ exports.register=async(req,res)=>{
       // Check if the user already exists
       let user = await User.findOne({ email });
       if (user) {
-        return res.status(400).json({ msg: 'User already exists' });
+        return res.status(409).json({ msg: 'User already exists' });
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -20,7 +20,7 @@ exports.register=async(req,res)=>{
         password: hashedPassword,
       });
 
-      await user.save();
+      const savedUser=await user.save();
 
       //Create JWT
       const payload={
@@ -37,6 +37,8 @@ exports.register=async(req,res)=>{
               if (err) throw err;
               res.json({ token });
             });
+
+        res.status(201).json({ userId: savedUser._id });
     } catch (err){
         console.error(err.message);
         res.status(500).send('Server error');

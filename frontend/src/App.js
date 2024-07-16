@@ -2,8 +2,10 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import NavBar from './components/NavBar';
-import SignUp from './components/signup/SignUp';
-import SignIn from './components/signin/SignIn';
+import SignUp from './components/signup/SignUp.js';
+import SignIn from './components/signin/SignIn.js';
+import ExpenseList from './Main/ExpenseList.js';
+
 
 
 
@@ -13,13 +15,14 @@ function App(){
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/signup" element={<SignUp />} /> 
+          <Route path="/register" element={<SignUp />} /> 
           <Route path="/" element={<SignIn />} />
+          <Route path="/ExpenseList" element={<ExpenseList />} />
+
         </Routes>
       </div>
     </Router>
   );
 };
-
 
 export default App;

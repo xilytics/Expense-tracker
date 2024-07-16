@@ -111,4 +111,12 @@ exports.getSummary= async (req, res) => {
     }
   };
 
-
+  exports.listExpenses= async (req, res) => {
+    try {
+      const { userId } = req.query;
+      const expenses = await Expense.find({ userId });
+      res.send(expenses);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  };
