@@ -4,25 +4,21 @@ const jwt = require('jsonwebtoken');
 const mongoose=require('mongoose');
 
 exports.addExpense=async(req,res)=> {
-    try {
-        const { date, amount, category, userId } = req.body;
+    
+        const { date, amount, category, name} = req.body;
         console.log('Request Body:', req.body);
-        if (!date || !amount || !category || !userId) {
+        if (!date || !amount || !category || !name) {
             return res.status(400).send({ message: 'Missing required fields' });
           }
 
-        // Ensure userId is a valid ObjectId
-        if (!mongoose.Types.ObjectId.isValid(userId)) {
-            return res.status(400).send({ message: 'Invalid userId format' });
-        }
         const expense = new Expense({
+            name,
             date,
             amount,
             category,
-            userId,
           });
         console.log('Expense Object:', expense);
-        await expense.save();//Note: This line attempts to save the newly created expense object to the MongoDB database. Since expense.save() returns a Promise, using await here means the function will wait for the save operation to complete before proceeding to the next line.
+        try {await expense.save();//Note: This line attempts to save the newly created expense object to the MongoDB database. Since expense.save() returns a Promise, using await here means the function will wait for the save operation to complete before proceeding to the next line.
         res.status(201).send(expense);
     }catch (err){
         console.error('Error:', err);
@@ -32,8 +28,9 @@ exports.addExpense=async(req,res)=> {
 
 
 exports.deleteExpense=async (req,res)=> {
+  const userId = req.userId; // Access userId from request object
     try {
-      const expense = await Expense.findByIdAndDelete(req.params.id);
+      const expense = await Expense.findByIdAndDelete({_id:req.params.id, user:req.userId});
       if (!expense) {
         return res.status(404).send({ message: 'Expense not found' });
       }
@@ -112,8 +109,9 @@ exports.getSummary= async (req, res) => {
   };
 
   exports.listExpenses= async (req, res) => {
+    const userId = req.userId;
     try {
-      const { userId } = req.query;
+     
       const expenses = await Expense.find({ userId });
       res.send(expenses);
     } catch (err) {
