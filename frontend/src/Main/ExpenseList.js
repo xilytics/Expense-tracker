@@ -21,7 +21,7 @@ const ExpenseList = () => {
     useEffect(() => {
         const fetchExpenses = async () => {
         try {
-            const response = await axios.get('/api/expenses', {
+            const response = await axios.get('http://localhost:5001/expenses/', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
@@ -44,7 +44,7 @@ const ExpenseList = () => {
 
     const handleDeleteExpense = async (id) => {
         try {
-        await axios.delete(`/api/expenses/${id}`, {
+        await axios.delete(`http://localhost:5001/expenses/${id}`, {
             headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
@@ -59,11 +59,11 @@ const ExpenseList = () => {
         <div>
         <h1 className={styles.title}>Expense Dashboard</h1>
         <AddExpenses onAdd={handleAddExpense} className={styles} />
-        <ul>
+        <ul text-align='center'>
             {expenses.length > 0 ? (
             expenses.map(expense => (
-                <li key={expense._id}>
-                {expense.name} - ${expense.amount} - {expense.category} - {new Date(expense.date).toLocaleDateString()}
+                <li key={expense._id} text-align='center'>
+                {expense.name} - ${expense.amount} - {expense.category} - {new Date(expense.date).toLocaleDateString()} 
                 <DeleteExpenses id={expense._id} onDelete={handleDeleteExpense} />
                 </li>
             ))

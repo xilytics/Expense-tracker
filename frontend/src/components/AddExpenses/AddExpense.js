@@ -10,10 +10,11 @@ const AddExpense = ({ onAdd }) => {
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/expenses', { name, amount, category, date }, {
+      const response = await axios.post('http://localhost:5001/api/expenses', { name, amount, category, date}, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

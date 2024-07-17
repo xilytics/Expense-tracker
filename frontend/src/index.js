@@ -14,7 +14,7 @@ root.render(
   </React.StrictMode>
 );
 
-ReactDOM(
+ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
