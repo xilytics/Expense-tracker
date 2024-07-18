@@ -23,19 +23,18 @@ const SignUp = () => {
         const response = await axios.post('http://localhost:5001/api/auth/register', { email, password });
         console.log('Signup successful', response.data);
         localStorage.setItem('userId', response.data.userId);
-        navigate('/ExpenseList');
+        navigate('/overview');
       }else {
         setPasswordsMatch(false);
         console.log("Passwords do not match.");
       }
     }catch (err) {
-      console.error('Signup failed:', err.response ? err.response.data : err.message);
-      if (err.response && err.response.data) {
+      if (err.response && err.response.data && err.response.data.message) {
         // Display backend validation errors if any
-        alert(`Error: ${err.response.data.message}`);
+        setMessage(err.response.data.message);
     } else {
         // General error handling
-        alert('An error occurred. Please try again.');
+        setMessage('An error occurred. Please try again.');
       }
     }
 };
@@ -69,7 +68,7 @@ const SignUp = () => {
       <p className={styles.requireSignup}>
       Already have an account? <Link to="/" className={styles.SignupLink}>Log in</Link>
       </p>    
-      {message && <p style={{ color: 'red' }}>{message}</p>}
+      {message && <p style={{ color: 'red' }} text-align="center">{message}</p>}
     </form>
   </div>
   );

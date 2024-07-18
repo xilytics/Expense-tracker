@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUp from './components/signup/SignUp.js';
 import SignIn from './components/signin/SignIn.js';
 import ExpenseList from './Main/ExpenseList.js';
+import AddExpensePage from './components/AddExpenses/AddExpense.js';
 
 
 
@@ -15,9 +16,10 @@ function App(){
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/register" element={<SignUp />} /> 
+          <Route path="/signup" element={<SignUp />} /> 
           <Route path="/" element={<SignIn />} />
-          <Route path="/ExpenseList" element={<ExpenseList />} />
+          <Route path="/overview" element={<ExpenseList />} />
+          <Route path="/add" element={<AddExpensePage />} />
 
         </Routes>
       </div>

@@ -22,7 +22,7 @@ const SignIn = () => {
       // Optionally, save the token in localStorage or context for authenticated routes
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('userId', res.data.userId);
-      navigate('/ExpenseList');
+      navigate('/overview');
     } catch (err) {
         console.error('Login failed:', err);
     }

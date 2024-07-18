@@ -7,9 +7,9 @@ const authenticate = require('../middleware/authMiddleware'); // Import the auth
 
 
 //API endpoint for adding a new expense instance in mongodb in the model of Expense with data from req.body
-router.get('/',authenticate,listExpenses)
+router.get('/overview',authenticate,listExpenses)
 
-router.post('/', authenticate, addExpense);
+router.post('/add', authenticate, addExpense);
 
 //Delete an expense
 router.delete('/:id', authenticate,deleteExpense);

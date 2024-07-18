@@ -1,9 +1,9 @@
-.container {
+.tablecontainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    
 }
 
 .title {
@@ -30,15 +30,7 @@
 
 }
 
-.button {
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #4574D0;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
+
 .requireSignup{
     color:#000000;
     text-align: center;
@@ -49,3 +41,123 @@
     font-weight: bold;
 }
 
+/* src/components/ExpenseList.css */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px;
+
+}
+.filtersection input[type="date"] {
+    flex: 1;
+   
+}
+
+.filtersection input[type="date"]:last-child {
+    margin-right: 0;
+}
+
+.filtersection .date-range-wrapper {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.filtersection {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    
+}
+.filtersection:last-child {
+    margin-right: 0;
+}
+.filtersection label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    margin-bottom:10px;
+}
+
+.filtersection input,
+.filtersection select,
+.filtersection button {
+    margin: 5px;
+    padding: 8px;
+    font-size: 16px;
+    height:40px;
+    box-sizing: border-box;
+    width:100%
+}
+
+.summary {
+    margin-bottom: 20px;
+    font-size:18px;
+    text-align: center;
+}
+.summarynumber{
+    margin-bottom: 20px;
+    font-size:18px;
+    text-align: center;
+    color:red;
+}
+.buttoncontainer{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4574D0;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin:10px;
+    text-align: center;
+    flex-direction: column;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.expensetable {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px;
+    text-align: center;
+}
+
+.expensetable th, .expensetable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.expensetable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.expensetable tr.even-row {
+    background-color: #f9f9f9;
+}
+
+.expensetable tr.odd-row {
+    background-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+    }
+
+    .filter-section {
+        margin-right: 0;
+        margin-bottom: 10px; 
+    }
+}
