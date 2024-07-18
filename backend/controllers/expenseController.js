@@ -4,14 +4,17 @@ const jwt = require('jsonwebtoken');
 const mongoose=require('mongoose');
 
 exports.addExpense=async(req,res)=> {
-    
+        
         const { date, amount, category, name} = req.body;
         console.log('Request Body:', req.body);
         if (!date || !amount || !category || !name) {
             return res.status(400).send({ message: 'Missing required fields' });
           }
+        console.log('Authenticated User:', req.user);
+        const userId = req.user.id;
 
         const expense = new Expense({
+            user:userId,
             name,
             date,
             amount,
@@ -28,9 +31,10 @@ exports.addExpense=async(req,res)=> {
 
 
 exports.deleteExpense=async (req,res)=> {
-  const userId = req.userId; // Access userId from request object
+   
     try {
-      const expense = await Expense.findByIdAndDelete({_id:req.params.id, user:req.userId});
+      const userId = req.userId;
+      const expense = await Expense.findByIdAndDelete({_id:req.params.id, user:userId});
       if (!expense) {
         return res.status(404).send({ message: 'Expense not found' });
       }
@@ -43,11 +47,12 @@ exports.deleteExpense=async (req,res)=> {
 
 exports.editExpense=async(req,res)=> {
     try {
+      const userId = req.user.id;
       const expense = await Expense.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true, runValidators: true }
-      );
+        { _id: req.params.id, user: userId },
+            req.body,
+            { new: true, runValidators: true }
+        );
       if (!expense) {
         return res.status(404).send();
       }
@@ -59,8 +64,9 @@ exports.editExpense=async(req,res)=> {
 
 exports.filterExpense=async(req, res)=>{
     try {
-      const { startDate, endDate, categories, userId } = req.query;
-      const filter = { userId };
+      const { startDate, endDate, categories } = req.query;
+      const userId = req.user.id;
+        const filter = { user: userId };
     // date range filter
       if (startDate && endDate) {
         filter.date = {
@@ -87,8 +93,10 @@ exports.filterExpense=async(req, res)=>{
 
 exports.getSummary= async (req, res) => {
     try {
-      const { date, category, userId } = req.query;
-      const match = { userId };
+      const { date, category} = req.query;
+      const userId = req.user.id;
+      const match = { user: userId };
+      
   
       if (date) {
         match.date = date;
@@ -109,10 +117,10 @@ exports.getSummary= async (req, res) => {
   };
 
   exports.listExpenses= async (req, res) => {
-    const userId = req.userId;
+    
     try {
-     
-      const expenses = await Expense.find({ userId });
+      const userId = req.user.id;
+      const expenses = await Expense.find({ user:userId });
       res.send(expenses);
     } catch (err) {
       res.status(500).send(err);
