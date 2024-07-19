@@ -43,7 +43,7 @@ const ExpenseList = () => {
         };
 
         try {
-            const response = await axios.get(`${configapi.apiBaseUrl}/expenses`, config);
+            const response = await axios.get(`${configapi.apiBaseUrl}/overview`, config);
             setExpenses(response.data);
             setFilteredExpenses(response.data);
             calculateSummary(response.data);
