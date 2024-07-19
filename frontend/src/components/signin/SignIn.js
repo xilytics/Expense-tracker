@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './SignIn.module.css'; 
 import waveIcon from '../visuals/wave.svg';
-import configapi from '../configapi'; 
+import configapi from '../../configapi'; 
 
 
 const SignIn = () => {
