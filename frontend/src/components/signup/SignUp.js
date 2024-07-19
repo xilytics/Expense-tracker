@@ -21,7 +21,7 @@ const SignUp = () => {
       if (password===confirmPassword){
         setPasswordsMatch(true);
         console.log('Sending Request Data:', { email, password });
-        const response = await axios.post(`${configapi.apiBaseUrl}/auth/register`, { email, password });
+        const response = await axios.post(`https://expense-tracker-skm7.onrender.com/api/auth/register`, { email, password });
         console.log('Signup successful', response.data);
         localStorage.setItem('userId', response.data.userId);
         navigate('/overview');

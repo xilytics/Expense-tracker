@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './SignIn.module.css'; 
 import waveIcon from '../visuals/wave.svg';
-import configapi from '../../configapi'; 
+
 
 
 const SignIn = () => {
@@ -19,10 +19,11 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${configapi.apiBaseUrl}/auth/signin`, { email, password });
+      const res = await axios.post(`https://expense-tracker-skm7.onrender.com/api/auth/signin`, { email, password });
       // Optionally, save the token in localStorage or context for authenticated routes
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('userId', res.data.userId);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`; // Set the header immediately after login
       navigate('/overview');
     } catch (err) {
         console.error('Login failed:', err);
