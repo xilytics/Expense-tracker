@@ -43,7 +43,7 @@ const ExpenseList = () => {
         };
 
         try {
-            const response = await axios.get(`${configapi.apiBaseUrl}/overview`, config);
+            const response = await axios.get(`https://expense-tracker-skm7.onrender.com/api/expenses/overview`, config);
             setExpenses(response.data);
             setFilteredExpenses(response.data);
             calculateSummary(response.data);
