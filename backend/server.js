@@ -11,9 +11,16 @@ const app=express();
 connectDB();
 
 // Middleware
+const allowedOrigins = ['http://localhost:3000', 'https://expense-tracker-skm7.onrender.com/'];
 
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: function(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      }
 }));
 app.use(express.json(express.json({ extended: false })))
 
