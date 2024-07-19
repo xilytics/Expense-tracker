@@ -38,7 +38,7 @@ exports.register=async(req,res)=>{
               res.json({ token });
             });
 
-        res.status(201).json({ userId: savedUser._id });
+        res.status(201).json({ userId: savedUser._id, token });
     } catch (err){
         console.error(err.message);
         res.status(500).send('Server error');
