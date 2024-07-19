@@ -11,7 +11,7 @@ const app=express();
 connectDB();
 
 // Middleware
-const allowedOrigins = ['http://localhost:3000', 'https://expense-tracker-skm7.onrender.com/'];
+const allowedOrigins = ['http://localhost:3000', 'https://expense-tracker-skm7.onrender.com/', 'https://expense-tracker-1-a5il.onrender.com'];
 
 app.use(cors({
     origin: function(origin, callback) {
