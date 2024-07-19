@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './SignIn.module.css'; 
 import waveIcon from '../visuals/wave.svg';
+import configapi from '../configapi'; 
 
 
 const SignIn = () => {
@@ -18,7 +19,7 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5001/api/auth/signin', { email, password });
+      const res = await axios.post(`${configapi.apiBaseUrl}/auth/signin`, { email, password });
       // Optionally, save the token in localStorage or context for authenticated routes
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('userId', res.data.userId);
