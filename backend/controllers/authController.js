@@ -29,16 +29,11 @@ exports.register=async(req,res)=>{
           },
         };
 
-        const token = jwt.sign(
-            payload, 
-            process.env.JWT_SECRET, 
-            { expiresIn: '1h' },
-            (err, token) => {
-              if (err) throw err;
-              res.json({ token });
-            });
+        
+      const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.status(201).json({ userId: savedUser._id, token });
+
+      res.status(201).json({ userId: savedUser._id, token: token });
     } catch (err){
         console.error(err.message);
         res.status(500).send('Server error');
