@@ -5,6 +5,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import styles from './Expenselist.module.css';
 import deleteIcon from './delete.svg'
+import configapi from '../configapi'; 
 
 
 const ExpenseList = () => {
@@ -42,7 +43,7 @@ const ExpenseList = () => {
         };
 
         try {
-            const response = await axios.get('http://localhost:5001/api/expenses/overview', config);
+            const response = await axios.get(`${configapi.apiBaseUrl}/expenses`, config);
             setExpenses(response.data);
             setFilteredExpenses(response.data);
             calculateSummary(response.data);

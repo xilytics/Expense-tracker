@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios'; 
 import styles from './SignUp.module.css';
 import waveIcon from '../visuals/wave.svg';
+import configapi from '../configapi'; 
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -20,7 +21,7 @@ const SignUp = () => {
       if (password===confirmPassword){
         setPasswordsMatch(true);
         console.log('Sending Request Data:', { email, password });
-        const response = await axios.post('http://localhost:5001/api/auth/register', { email, password });
+        const response = await axios.post(`${configapi.apiBaseUrl}/auth/register`, { email, password });
         console.log('Signup successful', response.data);
         localStorage.setItem('userId', response.data.userId);
         navigate('/overview');
