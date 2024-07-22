@@ -30,9 +30,9 @@ const SignUp = () => {
         console.log("Passwords do not match.");
       }
     }catch (err) {
-      if (err.response && err.response.data && err.response.data.message) {
+      if (err.response ||  err.response.data) {
         // Display backend validation errors if any
-        setMessage(err.response.data.message);
+        setMessage(err.response.data.msg);
     } else {
         // General error handling
         setMessage('An error occurred. Please try again.');
@@ -62,7 +62,7 @@ const SignUp = () => {
           className={styles.input}
           placeholder="Confirm password"
           onChange={(e) => setConfirmPassword(e.target.value)} required />
-      <button type="submit" className={styles.button}>Sign Up</button>
+      <button type="submit" className={styles.button}><div className={styles.buttontext}>Sign Up</div></button>
       {!passwordsMatch && (
                 <p style={{ color: 'red', textAlign:'center' }}>Passwords do not match!</p>
             )}

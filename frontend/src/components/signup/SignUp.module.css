@@ -35,6 +35,13 @@
     border: none;
     border-radius: 5px;
     text-align: center;
+    margin:auto;
+    margin-top: 10px;
+    min-width: 300px;
+}
+.buttontext {
+
+    margin:auto;
 }
 .requireSignup{
     color:#000000;

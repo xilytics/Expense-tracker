@@ -42,8 +42,16 @@
     color: white;
     border: none;
     border-radius: 10px;
-    margin:10px;
+    margin: auto;
+    margin-top: 10px;
+    min-width: 300px;
     text-align: center;
+}
+.buttontext {
+    
+margin:auto;
+    
+
 }
 .requireSignup{
     color:#000000;
