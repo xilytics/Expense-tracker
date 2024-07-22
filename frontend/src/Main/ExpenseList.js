@@ -43,7 +43,7 @@ const ExpenseList = () => {
         };
 
         try {
-            const response = await axios.get(`${configapi.apiBaseUrl}/expenses`, config);
+            const response = await axios.get(`https://expense-tracker-skm7.onrender.com/api/expenses/overview`, config);
             setExpenses(response.data);
             setFilteredExpenses(response.data);
             calculateSummary(response.data);
@@ -61,12 +61,25 @@ const ExpenseList = () => {
     }
 
 
-    const handleDeleteExpense = (id) => {
-        const updatedExpenses = expenses.filter(expense => expense._id !== id);
-        setExpenses(updatedExpenses);
-        setFilteredExpenses(updatedExpenses);
-        calculateSummary(updatedExpenses);
+    const handleDeleteExpense = async(id) => {
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        try {
+            await axios.delete(`https://expense-tracker-skm7.onrender.com/api/expenses/id`, config);
+            const updatedExpenses = expenses.filter(expense => expense._id !== id);
+            setExpenses(updatedExpenses);
+            setFilteredExpenses(updatedExpenses);
+            calculateSummary(updatedExpenses);
+        } catch (error) {
+            console.error('Error deleting expense:', error.response?.data.message);
+        }
     };
+    
 
     const navigateToAddExpense = () => {
         navigate('/add');

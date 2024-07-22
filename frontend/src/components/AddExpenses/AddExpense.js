@@ -17,18 +17,24 @@ const AddExpensePage = () => {
       return localStorage.getItem('token');
     };
 
-    const config = {
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${getToken()}`
-      }
-    };
+    
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const token = getToken();
+        if (!token) {
+          console.error('No token found, please log in again.');
+          return;
+        }
+        const config = {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${getToken()}`
+          }
+        };
         try {
-            await axios.post(`${config.apiBaseUrl}/expenses/add`, { name, amount, category, date },config);
+            await axios.post(`https://expense-tracker-skm7.onrender.com/api/expenses/add`, { name, amount, category, date },config);
             navigate('/overview'); // Navigate back to the overview page after adding the expense
         } catch (error) {
             console.error('Error adding expense:', error.response?.data.message);

@@ -3,7 +3,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios'; 
 import styles from './SignUp.module.css';
 import waveIcon from '../visuals/wave.svg';
+<<<<<<< HEAD
 import configapi from '../../configapi'; 
+=======
+
+>>>>>>> 819eca1081834c6ef74de11499765b432bfd7efc
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -21,8 +25,9 @@ const SignUp = () => {
       if (password===confirmPassword){
         setPasswordsMatch(true);
         console.log('Sending Request Data:', { email, password });
-        const response = await axios.post(`${configapi.apiBaseUrl}/auth/register`, { email, password });
-        console.log('Signup successful', response.data);
+        const response = await axios.post(`https://expense-tracker-skm7.onrender.com/api/auth/register`, { email, password });
+        console.log('Signup successful', response.data);      
+        localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
         navigate('/overview');
       }else {
