@@ -116,28 +116,34 @@ const ExpenseList = () => {
         <div>
             <NavigationBar />
             <div className={styles.filters}>
-                <div className={styles.filtersection}>
-                    <label >Date Range:</label>
-                        <input className={styles.startDate} type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
-                        <input className={styles.endDate} type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
-                    
-                
-                </div>
-                <div  className={styles.filtersection}>
-                    <label >Category:</label>
-                        
-                        <select value={category} onChange={e => setCategory(e.target.value)}>
-                            <option value="">All</option>
-                            <option value="Food">Food</option>
-                            <option value="Travel">Travel</option>
-                            <option value="Entertainment">Entertainment</option>
-                            <option value="Health">Health</option>
-                            <option value="Others">Others</option>
-                        </select>
-                    
-                </div>
+                <div className={styles.datefilter}>
+                    <div className={styles.datelabel}>
+                                Date range
+                    </div>  
+                    <div className={styles.Date} >
+                            <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+                            <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+                        </div >
+                </div > 
+                <div className={styles.categoryfilter}>
+                    <div  className={styles.categorylabel}>
+                                    Category
+                    </div > 
+                    <div className={styles.Category} >
+                            <select value={category} onChange={e => setCategory(e.target.value)}>
+                                <option value="">All</option>
+                                <option value="Food">Food</option>
+                                <option value="Travel">Travel</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Health">Health</option>
+                                <option value="Others">Others</option>
+                                </select>
+                    </div>
+                </div > 
             </div>
 
+                   
+                
             <div className="summary">
                 <h2 className={styles.summary}>Total Expenses:</h2>
                 <h2 className={styles.summarynumber}>-${summary}</h2>
@@ -178,6 +184,7 @@ const ExpenseList = () => {
             </table>
             </div>
         </div>
+        
     );
 };
 
