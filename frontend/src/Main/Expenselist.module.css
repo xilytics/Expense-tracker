@@ -102,8 +102,8 @@
     stroke-opacity: 63%;
     height:41px;
     width:280px;
-    height:38px;
-    width:280px;
+    height:41px;
+   
 
 }
 
@@ -196,15 +196,8 @@ button {
     }
 
     .datefilter{
-        text-align: center;}
-
-    .datefilter{
         text-align: center;
     }
-    .categoryfilter{
-        text-align: center;
-    }
-   
     .categoryfilter{
         text-align: center;
     }
