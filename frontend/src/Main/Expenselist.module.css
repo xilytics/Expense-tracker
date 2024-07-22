@@ -8,12 +8,44 @@
     margin:10px;
 }
 
+
+
+.filters{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    margin:10px;
+}
+
 .tablecontainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     
+}
+
+.datelabel {
+    order:1;
+    font-size: 18px;
+    margin:10px;
+    font-weight: bold;
+}
+
+.categorylabel {
+    order:2;
+    font-size: 18px;
+    margin:10px;
+    font-weight: bold;
+}
+
+.Date {
+    order:3;
+}
+
+.Category {
+    order:4;
 }
 
 .datelabel {
@@ -70,6 +102,8 @@
     stroke-opacity: 63%;
     height:41px;
     width:280px;
+    height:41px;
+    width:280px;
 
 }
 
@@ -84,6 +118,11 @@
 }
 
 /* src/components/ExpenseList.css */
+
+
+
+
+
 
 
 
@@ -122,6 +161,7 @@ button {
 
 
 
+
 .expensetable {
     width: 90%;
     border-collapse: collapse;
@@ -152,11 +192,18 @@ button {
     .filters {
         flex-direction: column;
         justify-content: center;
+        justify-content: center;
     }
 
     .datefilter{
         text-align: center;
+    .datefilter{
+        text-align: center;
     }
+    .categoryfilter{
+        text-align: center;
+    }
+   
     .categoryfilter{
         text-align: center;
     }
