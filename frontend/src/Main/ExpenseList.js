@@ -137,7 +137,6 @@ const ExpenseList = () => {
                     
                 </div>
             </div>
-            <div className={styles.buttoncontainer}>
 
             <div className="summary">
                 <h2 className={styles.summary}>Total Expenses:</h2>
