@@ -16,7 +16,7 @@
    color:#4574D0;
 }
 
-.input {
+.inputadd {
     margin-bottom: 10px;
     padding: 8px;
     font-size: 16px;
@@ -24,7 +24,8 @@
     
 
 }
-.select {
+
+.selectadd {
     margin-bottom: 10px;
     padding: 8px;
     font-size: 16px;

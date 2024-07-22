@@ -121,8 +121,13 @@ const ExpenseList = () => {
                                 Date range
                     </div>  
                     <div className={styles.Date} >
+
+                            <input className={styles.inputstyle} type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+                            <input className={styles.inputstyle} type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+
                             <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
                             <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+
                         </div >
                 </div > 
                 <div className={styles.categoryfilter}>
@@ -130,7 +135,11 @@ const ExpenseList = () => {
                                     Category
                     </div > 
                     <div className={styles.Category} >
+
+                            <select className={styles.selectstyle} value={category} onChange={e => setCategory(e.target.value)}>
+
                             <select value={category} onChange={e => setCategory(e.target.value)}>
+
                                 <option value="">All</option>
                                 <option value="Food">Food</option>
                                 <option value="Travel">Travel</option>
@@ -141,6 +150,11 @@ const ExpenseList = () => {
                     </div>
                 </div > 
             </div>
+
+
+                   
+                
+
 
             <div className="summary">
                 <h2 className={styles.summary}>Total Expenses:</h2>
