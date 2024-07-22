@@ -52,22 +52,24 @@
    color:#4574D0;
 }
 
-input {
+.inputstyle {
     margin: 10px;
     padding: 8px;
     font-size: 16px;
     border-radius: 8px;
     stroke-opacity: 63%;
+    
    
 
 }
-select {
+.selectstyle {
     margin-bottom: 10px;
     padding: 8px;
     font-size: 16px;
     border-radius: 8px;
     stroke-opacity: 63%;
     height:41px;
+    width:280px;
 
 }
 

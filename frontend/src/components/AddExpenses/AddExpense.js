@@ -50,9 +50,9 @@ const AddExpensePage = () => {
           <NavigationBar />
             <h1>Add Expense</h1>
             <form onSubmit={handleSubmit}>
-                <input  className={style.input} type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Name" required />
-                <input  className={style.input} type="number" value={amount} onChange={e => setAmount(e.target.value)} placeholder="Amount" required />
-                <select className={style.select} value={category} onChange={e => setCategory(e.target.value)} placeholder="Category" required>
+                <input  className={style.inputadd} type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Name" required />
+                <input  className={style.inputadd} type="number" value={amount} onChange={e => setAmount(e.target.value)} placeholder="Amount" required />
+                <select className={style.selectadd} value={category} onChange={e => setCategory(e.target.value)} placeholder="Category" required>
                             <option value="">All</option>
                             <option value="Food">Food</option>
                             <option value="Travel">Travel</option>
@@ -60,7 +60,7 @@ const AddExpensePage = () => {
                             <option value="Health">Health</option>
                             <option value="Others">Others</option>
                 </select>
-                <input className={style.input} type="date" value={date} onChange={e => setDate(e.target.value)} required />
+                <input  type="date" value={date} onChange={e => setDate(e.target.value)} required />
                 <button className={style.button} type="submit" >Save Expense</button>
                 <button className={style.button} type="button" onClick={handleCancel}>Go Back</button>
             </form>
