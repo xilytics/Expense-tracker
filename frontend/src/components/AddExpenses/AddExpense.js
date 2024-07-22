@@ -60,7 +60,7 @@ const AddExpensePage = () => {
                             <option value="Health">Health</option>
                             <option value="Others">Others</option>
                 </select>
-                <input  type="date" value={date} onChange={e => setDate(e.target.value)} required />
+                <input  className={style.inputadd} type="date" value={date} onChange={e => setDate(e.target.value)} required />
                 <button className={style.button} type="submit" >Save Expense</button>
                 <button className={style.button} type="button" onClick={handleCancel}>Go Back</button>
             </form>
