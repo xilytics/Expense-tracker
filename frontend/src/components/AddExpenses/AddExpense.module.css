@@ -34,6 +34,7 @@
 }
 
 .button {
+    
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
@@ -43,6 +44,8 @@
     border-radius: 10px;
     margin:10px;
     text-align: center;
+    
+
 }
 .requireSignup{
     color:#000000;
@@ -59,4 +62,11 @@ h1{
     font-size:18px;
     text-align: center;
     margin:30px;
+}
+
+@media (max-width: 600px) {
+    button {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
