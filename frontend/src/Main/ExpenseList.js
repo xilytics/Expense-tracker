@@ -138,8 +138,6 @@ const ExpenseList = () => {
 
                             <select className={styles.selectstyle} value={category} onChange={e => setCategory(e.target.value)}>
 
-                            <select value={category} onChange={e => setCategory(e.target.value)}>
-
                                 <option value="">All</option>
                                 <option value="Food">Food</option>
                                 <option value="Travel">Travel</option>
