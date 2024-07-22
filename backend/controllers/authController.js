@@ -16,7 +16,7 @@ exports.register=async(req,res)=>{
       const hashedPassword = await bcrypt.hash(password, 10);
   
       user = new User({
-        email,
+        email: email.toLowerCase(),
         password: hashedPassword,
       });
 
@@ -46,7 +46,8 @@ exports.signin=async(req,res)=>{
     const { email, password } = req.body;
 
     // Find user by email
-    const user = await User.findOne({ email });
+    const emailLowerCase=req.body.email.toLowerCase();
+    const user = await User.findOne({ emailLowerCase });
     if (!user) return res.status(400).send({ message: 'Invalid email or password' });
 
     // Check password
