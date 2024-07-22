@@ -42,6 +42,7 @@
     border: none;
     border-radius: 10px;
     margin:10px;
+    text-align: center;
 }
 .requireSignup{
     color:#000000;
