@@ -142,8 +142,6 @@ const ExpenseList = () => {
                 </div > 
             </div>
 
-                   
-                
             <div className="summary">
                 <h2 className={styles.summary}>Total Expenses:</h2>
                 <h2 className={styles.summarynumber}>-${summary}</h2>
