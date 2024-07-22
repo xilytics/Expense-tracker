@@ -4,7 +4,6 @@ import axios from 'axios';
 import styles from './SignIn.module.css'; 
 import waveIcon from '../visuals/wave.svg';
 
-
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
