@@ -3,11 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios'; 
 import styles from './SignUp.module.css';
 import waveIcon from '../visuals/wave.svg';
-<<<<<<< HEAD
-import configapi from '../../configapi'; 
-=======
-
->>>>>>> 819eca1081834c6ef74de11499765b432bfd7efc
 
 const SignUp = () => {
   const [email, setEmail] = useState('');

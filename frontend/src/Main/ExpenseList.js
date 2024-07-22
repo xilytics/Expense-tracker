@@ -138,7 +138,7 @@ const ExpenseList = () => {
                 </div>
             </div>
             <div className={styles.buttoncontainer}>
-            <button onClick={() => {startDate || endDate || category ? fetchFilteredExpenses() : fetchAllExpenses()}}>Apply Filters</button>
+            
             </div>
 
             <div className="summary">
