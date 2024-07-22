@@ -196,10 +196,17 @@ button {
     }
 
     .datefilter{
+        text-align: center;}
+
+    .datefilter{
         text-align: center;
     .datefilter{
         text-align: center;
     }
+    .categoryfilter{
+        text-align: center;
+    }
+   
     .categoryfilter{
         text-align: center;
     }

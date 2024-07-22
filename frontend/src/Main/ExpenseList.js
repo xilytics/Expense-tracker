@@ -125,9 +125,7 @@ const ExpenseList = () => {
                             <input className={styles.inputstyle} type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
                             <input className={styles.inputstyle} type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
 
-                            <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
-                            <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
-
+                    
                         </div >
                 </div > 
                 <div className={styles.categoryfilter}>
