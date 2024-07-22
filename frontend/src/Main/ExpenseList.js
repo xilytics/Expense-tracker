@@ -5,7 +5,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import styles from './Expenselist.module.css';
 import deleteIcon from './delete.svg'
-import configapi from '../configapi'; 
 
 
 const ExpenseList = () => {
@@ -33,17 +32,18 @@ const ExpenseList = () => {
         setSummary(total);
     };
    
-    const fetchExpenses = useCallback(async () => {
+    const fetchAllExpenses = useCallback(async () => {
         const token = localStorage.getItem('token');
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
+
         };
 
         try {
-            const response = await axios.get(`https://expense-tracker-skm7.onrender.com/api/expenses/overview`, config);
+            const response = await axios.get(`https://expense-tracker-skm7.onrender.com/api/expenses/overview/`, config);
             setExpenses(response.data);
             setFilteredExpenses(response.data);
             calculateSummary(response.data);
@@ -52,9 +52,36 @@ const ExpenseList = () => {
         }
     }, []);
 
+    const fetchFilteredExpenses=useCallback(async()=> {
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            params: {
+                startDate: startDate || undefined,
+                endDate: endDate || undefined,
+                category: category || undefined
+            }
+        };
+        try {
+            const response = await axios.get(`https://expense-tracker-skm7.onrender.com/api/expenses/filter`, config);
+            setExpenses(response.data);
+            setFilteredExpenses(response.data);
+            calculateSummary(response.data);
+        } catch (error) {
+            console.error('Error fetching expenses:', error.response?.data?.message);
+        }
+    }, [startDate, endDate, category]);
+
     useEffect(() => {
-        fetchExpenses();
-    }, [fetchExpenses]);
+        if (startDate || endDate || category) {
+            fetchFilteredExpenses();
+        } else {
+            fetchAllExpenses();
+        }
+    }, [fetchAllExpenses, fetchFilteredExpenses, startDate, endDate, category]);
 
     if (!isLoggedIn) {
         return <Navigate to="/signin" />;
@@ -70,7 +97,7 @@ const ExpenseList = () => {
             }
         };
         try {
-            await axios.delete(`https://expense-tracker-skm7.onrender.com/api/expenses/id`, config);
+            await axios.delete(`https://expense-tracker-skm7.onrender.com/api/expenses/${id}`, config);
             const updatedExpenses = expenses.filter(expense => expense._id !== id);
             setExpenses(updatedExpenses);
             setFilteredExpenses(updatedExpenses);
@@ -110,6 +137,10 @@ const ExpenseList = () => {
                     
                 </div>
             </div>
+            <div className={styles.buttoncontainer}>
+            <button onClick={() => {startDate || endDate || category ? fetchFilteredExpenses() : fetchAllExpenses()}}>Apply Filters</button>
+            </div>
+
             <div className="summary">
                 <h2 className={styles.summary}>Total Expenses:</h2>
                 <h2 className={styles.summarynumber}>-${summary}</h2>
