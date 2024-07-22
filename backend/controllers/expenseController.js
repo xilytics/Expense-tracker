@@ -33,7 +33,7 @@ exports.addExpense=async(req,res)=> {
 exports.deleteExpense=async (req,res)=> {
    
     try {
-      const userId = req.userId;
+      const userId = req.user.id;
       const expense = await Expense.findByIdAndDelete({_id:req.params.id, user:userId});
       if (!expense) {
         return res.status(404).send({ message: 'Expense not found' });
@@ -64,7 +64,7 @@ exports.editExpense=async(req,res)=> {
 
 exports.filterExpense=async(req, res)=>{
     try {
-      const { startDate, endDate, categories } = req.query;
+      const { startDate, endDate, category } = req.query;
       const userId = req.user.id;
         const filter = { user: userId };
     // date range filter
@@ -73,15 +73,18 @@ exports.filterExpense=async(req, res)=>{
           $gte: new Date(startDate),
           $lte: new Date(endDate),
         };
-      }
+      }else if (startDate) {
+        filter.date = { $gte: new Date(startDate) };
+    } else if (endDate) {
+        filter.date = { $lte: new Date(endDate) };
+    }
 
     //category filter
-     if (categories){
-        filter.categories = {
-          $in: categories.split(','),
-        };
+     if (category){
+          filter.category = category;
       }
-    
+      console.log('Filter Object:', filter);
+
     //Fetch expenses based on filters
     const expenses=await Expense.find(filter);
     res.send(expenses);
@@ -89,6 +92,8 @@ exports.filterExpense=async(req, res)=>{
         res.status(500).send(err);
     }
 };
+
+
 
 
 exports.getSummary= async (req, res) => {
