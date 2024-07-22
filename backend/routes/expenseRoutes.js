@@ -15,7 +15,7 @@ router.post('/add', authenticate, addExpense);
 router.delete('/:id', authenticate,deleteExpense);
 
 //filter expenses
-router.get('/', authenticate, filterExpense);
+router.get('/filter', authenticate, filterExpense);
 
 module.exports=router;
 
