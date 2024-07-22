@@ -3,12 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './SignIn.module.css'; 
 import waveIcon from '../visuals/wave.svg';
-<<<<<<< HEAD
-import configapi from '../../configapi'; 
-=======
-
->>>>>>> 819eca1081834c6ef74de11499765b432bfd7efc
-
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
